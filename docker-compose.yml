@@ -1,0 +1,37 @@
+version: '3.8'
+
+
+services:
+  postgres:
+    image: postgres:${POSTGRES_SERVER_VERSION}
+    #image: postgres:latest
+    container_name: docker-compose-spring-boot-postgres
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    ports:
+      - ${POSTGRES_EXPOSE_PORT}:${POSTGRES_SERVER_PORT}
+    networks:
+      - infranet
+  app:
+    build: ./app  
+    restart: on-failure
+    env_file: ./.env
+    ports:
+       - ${APP_EXPOSE_PORT}:${APP_SERVER_PORT}
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: ${APP_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${APP_DATASOURCE_USER}
+      SPRING_DATASOURCE_PASSWORD: ${APP_DATASOURCE_PASS}
+    networks:
+      - infranet
+networks:
+  infranet:
+
