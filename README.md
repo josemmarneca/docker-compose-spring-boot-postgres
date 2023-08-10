@@ -1,46 +1,43 @@
 # Docker Compose Spring Boot and Postgres example
 
-## Start project
-Run the script start.sh or
+## Start the system using the script
+Run the script start `start.sh` or Compile with maven and run docker with build image
+
+### Run script start 
+Edit the file to compile with maven and them run 
+```bash
+sh start.sh
+```
+## Start the system using the command line
 ### Compile with maven
+```bash
 mvn clean install -f app/pom.xml
+```
 
 ### Run docker with build image (--build) in background (-d) 
-docker-compose up --build -d
-Run script start.sh (first time need ) 
+```bash 
+docker-compose up --build -d`
 ```
 
-##
+### Run the System
 
-## Set enviroments 
-Run script enviroment
-
-```
-export $(cat .env | xargs)
-```
-
-## Run the System and build the image
-We can easily run the whole with only a single command:
-```bash
-docker-compose up --build
-```
-
-
-## Run the System
-We can easily run the whole with only a single command:
 ```bash
 docker-compose up
 ```
-
-Docker will pull the MySQL and Spring Boot images (if our machine does not have it before).
 
 The services can be run on the background with command:
 ```bash
 docker-compose up -d
 ```
 
-## Stop the System
-Stopping all the running containers is also simple with a single command:
+## Stop the system using the script
+Run the script stop `stop.sh` 
+### Run script stop 
+```bash
+sh stop.sh
+```
+## Start the system using the command line
+### stop all running containers
 ```bash
 docker-compose down
 ```
