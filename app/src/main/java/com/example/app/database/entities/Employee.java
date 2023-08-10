@@ -23,14 +23,11 @@ public class Employee {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
+            name = "employees_roles",
+            joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
-
-
-
 
     public Employee() {
     }

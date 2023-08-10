@@ -17,7 +17,7 @@ services:
     ports:
       - ${POSTGRES_EXPOSE_PORT}:${POSTGRES_SERVER_PORT}
     networks:
-      - infranet
+      - app-network:
   app:
     build: ./app  
     restart: on-failure
@@ -31,7 +31,7 @@ services:
       SPRING_DATASOURCE_USERNAME: ${APP_DATASOURCE_USER}
       SPRING_DATASOURCE_PASSWORD: ${APP_DATASOURCE_PASS}
     networks:
-      - infranet
+      - app-network:
 networks:
-  infranet:
+  app-network:
 
