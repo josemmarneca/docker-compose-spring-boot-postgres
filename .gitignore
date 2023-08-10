@@ -31,4 +31,4 @@ replay_pid*
 backups/
 enviroment/
 data/
-old/
+old/.DS_Store
